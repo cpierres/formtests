@@ -13,29 +13,36 @@ import java.time.Duration;
  */
 public class TestAssertTimeout {
 
-
     private static String traiter() throws InterruptedException {
         Thread.sleep(2000);
         return "";
     }
     @Test
-    void verifierTimeout() {
+    void verifierTimeout1() {
         // surcharges qui permettent de préciser la durée maximale d'exécution (timeout),
         // les traitements à exécuter sous la forme d'un Executable ou d'un ThrowingSupplier
         // et éventuellement un message sous la forme d'une chaîne de caractères ou d'un Supplier<String>
         Assertions.assertTimeout(Duration.ofMillis(200), () -> {
             return "";
         });
-        Assertions.assertTimeout(Duration.ofSeconds(1), TestAssertTimeout::traiter);
     }
 
     @Test
-    void verifierTimeoutPreemptively() {
+    void verifierTimeout2() {
+        // surcharges qui permettent de préciser la durée maximale d'exécution (timeout),
+        // les traitements à exécuter sous la forme d'un Executable ou d'un ThrowingSupplier
+        // et éventuellement un message sous la forme d'une chaîne de caractères ou d'un Supplier<String>
+        Assertions.assertTimeout(Duration.ofSeconds(1), TestAssertTimeout::traiter);
+    }
+    @Test
+    void verifierTimeoutPreemptively1() {
         Assertions.assertTimeoutPreemptively(Duration.ofMillis(200), () -> {
             return "";
         });
-
-        Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1), TestAssertTimeout::traiter);
     }
 
+    @Test
+    void verifierTimeoutPreemptively2() {
+        Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1), TestAssertTimeout::traiter);
+    }
 }
