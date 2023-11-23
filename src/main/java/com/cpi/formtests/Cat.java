@@ -1,7 +1,6 @@
 package com.cpi.formtests;
 
 public class Cat {
-
     private final String name;
     private int eatenMouseTotal = 0;
 
@@ -11,6 +10,7 @@ public class Cat {
 
     public void catchMouse(int nbMouse) {
         eatenMouseTotal += nbMouse;
+        System.out.println("         Cat.catchMouse("+nbMouse+") => eatenMouseTotal="+eatenMouseTotal);
     }
 
     public String getName() {
@@ -18,6 +18,7 @@ public class Cat {
     }
 
     public int getEatenMouseTotal() {
+        System.out.println("         Cat.getEatenMouseTotal() => " + eatenMouseTotal);
         return eatenMouseTotal;
     }
 }
