@@ -5,6 +5,8 @@ import org.junit.jupiter.api.TestFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,6 +31,7 @@ public class TestDynamiques {
      * à exécuter. Le test est fourni sous la forme d'une interface fonctionnelle Executable ce qui permet de fournir
      * l'implémentation sous la forme d'une expression Lambda.
      * La fabrique peut renvoyer une Collection de DynamicTest.
+     *
      * @return
      */
     @TestFactory
@@ -41,5 +44,21 @@ public class TestDynamiques {
         }
         return resultat;
     }
+
+    /**
+     * La fabrique peut aussi renvoyer un Iterator de DynamicTest
+     * @return
+     */
+    @TestFactory
+    Iterator<DynamicTest> dynamicTestsAvecIterator() {
+        List<DynamicTest> resultat = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            int val = i;
+            resultat.add(DynamicTest.dynamicTest("Ajout " + val + "+" + val,
+                    () -> assertEquals(val * 2, val + val)));
+        }
+        return resultat.iterator();
+    }
+
 
 }
