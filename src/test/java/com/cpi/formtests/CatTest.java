@@ -3,6 +3,8 @@ package com.cpi.formtests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * - Chaque exécution de test est indépendante des autres, avec une instance
@@ -46,6 +48,19 @@ public class CatTest {
 
         //then
         Assertions.assertEquals(2, cat.getEatenMouseTotal());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,3,5,15})
+    public void shouldEatMousesParameterizedTest(int nbMouse) {
+        // given
+
+
+        //when
+        cat.catchMouse(nbMouse);
+
+        //then
+        Assertions.assertEquals(nbMouse, cat.getEatenMouseTotal());
     }
 
 }
